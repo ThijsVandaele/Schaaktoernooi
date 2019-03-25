@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Microsoft.EntityFrameworkCore;
 namespace Schaaktoernooi
 {
     class Program
