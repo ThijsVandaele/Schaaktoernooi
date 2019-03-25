@@ -7,7 +7,7 @@ namespace Schaaktoernooi
 {
     class SchaakContext: DbContext
     {
-        const string server = @"(localdb)\mssqlllocaldb";
+        const string server = @"(localdb)\mssqllocaldb";
         const string databaseName = "Schaken";
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsbuilder)
