@@ -6,8 +6,8 @@ namespace Schaaktoernooi
     {
         static void Main(string[] args)
         {
-
-
+            DatabaseSeeder.Seed();
+            
             Console.ReadKey();
         }
     }
