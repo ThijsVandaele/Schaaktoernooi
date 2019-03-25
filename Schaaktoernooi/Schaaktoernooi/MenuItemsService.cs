@@ -1,29 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Schaaktoernooi
 {
     class MenuItemsService
     {
-        public List<MenuItems> GetMenuItems()
+        public List<MenuItem> GetMenuItems()
         {
-            using ( context = new ())
+            List<MenuItem> lstMenuitems;
 
-            var lstMenuitems = context.MenuItem.OrderBy(x => x.Nummer).ToList();
-
+            using (SchaakContext context = new SchaakContext())
+            {
+                lstMenuitems = context.MenuItems.OrderBy(x => x.Nummer).ToList();
+            }
             return lstMenuitems;
         }
 
-        public void ShowMenu(List<MenuItems> menuItems)
+        public void ShowMenu(List<MenuItem> menuItems)
 
         {
-            using (context = new ())
+            using (SchaakContext context = new SchaakContext())
 
-          foreach (var item in menuItems)
-        {
-            Console.WriteLine(item.Nummer + " " + item.Omschrijving);
+                foreach (var item in menuItems)
+                {
+                    Console.WriteLine(item.Nummer + " " + item.Omschrijving);
 
-       }
+                }
+        }
     }
 }
+

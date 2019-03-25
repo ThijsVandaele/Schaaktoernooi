@@ -17,5 +17,8 @@ namespace Schaaktoernooi
             optionsbuilder.UseSqlServer(
                $@"Server={server};Database={databaseName};Trusted_Connection=True;");
         }
+
+        public DbSet <MenuItem> MenuItems { get; set; }
+
     }
 }
