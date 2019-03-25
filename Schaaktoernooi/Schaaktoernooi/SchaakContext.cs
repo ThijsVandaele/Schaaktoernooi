@@ -7,10 +7,13 @@ namespace Schaaktoernooi
 {
     class SchaakContext: DbContext
     {
-        const string server = @"(localdb)\mssqlllocaldb";
+        const string server = @"(localdb)\mssqllocaldb";
         const string databaseName = "Schaken";
 
         DbSet<Users> Users { get; set; }
+        DbSet<Toernooi> Toernooi { get; set; }
+        DbSet<Club> Club { get; set; }
+        DbSet<TournamentsForEachClub> TournamentsForEachClubs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsbuilder)
         {
@@ -20,5 +23,8 @@ namespace Schaaktoernooi
 
         public DbSet <MenuItem> MenuItems { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+        }
     }
 }
