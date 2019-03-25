@@ -10,6 +10,8 @@ namespace Schaaktoernooi
         const string server = @"(localdb)\mssqlllocaldb";
         const string databaseName = "Schaken";
 
+        DbSet<Users> Users { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsbuilder)
         {
             optionsbuilder.UseSqlServer(
