@@ -9,22 +9,13 @@ namespace Schaaktoernooi
     public class Toernooi
     {
         [Key]
-        public int TournamentID { get; set; }
+        public int Id { get; set; }
         public string TournamentName { get; set; }
         public DateTime TournamentStartDate { get; set; }
         public DateTime TournamentEndDate { get; set; }
         public string TournamentDetails { get; set; }
 
-        [ForeignKey("Club")]
-        public int ClubID { get; set; }
-        public Club Club { get; set; }
-
-        public IList<TournamentsForEachClub> tournamentsForEachClubs { get; set; }
-        = new List<TournamentsForEachClub>();
-
-
-
-
-
+        public IList<TournamentsForEachClub> TournamentsForEachClubs { get; set; }
+            = new List<TournamentsForEachClub>();
     }
 }

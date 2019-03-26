@@ -10,8 +10,8 @@ using Schaaktoernooi;
 namespace Schaaktoernooi.Migrations
 {
     [DbContext(typeof(SchaakContext))]
-    [Migration("20190325210309_Classen maken")]
-    partial class Classenmaken
+    [Migration("20190326200309_Add TournamentsForEachClub")]
+    partial class AddTournamentsForEachClub
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,11 +23,11 @@ namespace Schaaktoernooi.Migrations
 
             modelBuilder.Entity("Schaaktoernooi.Club", b =>
                 {
-                    b.Property<int>("ClubID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.HasKey("ClubID");
+                    b.HasKey("Id");
 
                     b.ToTable("Club");
                 });
@@ -49,11 +49,9 @@ namespace Schaaktoernooi.Migrations
 
             modelBuilder.Entity("Schaaktoernooi.Toernooi", b =>
                 {
-                    b.Property<int>("TournamentID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ClubID");
 
                     b.Property<string>("TournamentDetails");
 
@@ -63,9 +61,7 @@ namespace Schaaktoernooi.Migrations
 
                     b.Property<DateTime>("TournamentStartDate");
 
-                    b.HasKey("TournamentID");
-
-                    b.HasIndex("ClubID");
+                    b.HasKey("Id");
 
                     b.ToTable("Toernooi");
                 });
@@ -76,15 +72,15 @@ namespace Schaaktoernooi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ClubID");
+                    b.Property<int>("ClubId");
 
-                    b.Property<int>("TournamentID");
+                    b.Property<int>("ToernooiId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClubID");
+                    b.HasIndex("ClubId");
 
-                    b.HasIndex("TournamentID");
+                    b.HasIndex("ToernooiId");
 
                     b.ToTable("TournamentsForEachClubs");
                 });
@@ -106,24 +102,16 @@ namespace Schaaktoernooi.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Schaaktoernooi.Toernooi", b =>
-                {
-                    b.HasOne("Schaaktoernooi.Club", "Club")
-                        .WithMany()
-                        .HasForeignKey("ClubID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Schaaktoernooi.TournamentsForEachClub", b =>
                 {
                     b.HasOne("Schaaktoernooi.Club", "Club")
-                        .WithMany("tournamentsForEachClubs")
-                        .HasForeignKey("ClubID")
+                        .WithMany("TournamentsForEachClubs")
+                        .HasForeignKey("ClubId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Schaaktoernooi.Toernooi", "Toernooi")
-                        .WithMany("tournamentsForEachClubs")
-                        .HasForeignKey("TournamentID")
+                        .WithMany("TournamentsForEachClubs")
+                        .HasForeignKey("ToernooiId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

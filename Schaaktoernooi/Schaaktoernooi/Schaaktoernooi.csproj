@@ -6,7 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190325210309_Classen maken.cs" />
     <Compile Remove="Migrations\20190325210827_tussentabel.cs" />
+    <Compile Remove="Migrations\20190326193913_Fix cycle error between clubs and tournaments.cs" />
   </ItemGroup>
 
   <ItemGroup>

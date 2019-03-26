@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Schaaktoernooi.Migrations
 {
-    public partial class Classenmaken : Migration
+    public partial class AddTournamentsForEachClub : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,35 +12,28 @@ namespace Schaaktoernooi.Migrations
                 name: "Club",
                 columns: table => new
                 {
-                    ClubID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Club", x => x.ClubID);
+                    table.PrimaryKey("PK_Club", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Toernooi",
                 columns: table => new
                 {
-                    TournamentID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     TournamentName = table.Column<string>(nullable: true),
                     TournamentStartDate = table.Column<DateTime>(nullable: false),
                     TournamentEndDate = table.Column<DateTime>(nullable: false),
-                    TournamentDetails = table.Column<string>(nullable: true),
-                    ClubID = table.Column<int>(nullable: false)
+                    TournamentDetails = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Toernooi", x => x.TournamentID);
-                    table.ForeignKey(
-                        name: "FK_Toernooi_Club_ClubID",
-                        column: x => x.ClubID,
-                        principalTable: "Club",
-                        principalColumn: "ClubID",
-                        onDelete: ReferentialAction.Cascade);
+                    table.PrimaryKey("PK_Toernooi", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -49,40 +42,35 @@ namespace Schaaktoernooi.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ClubID = table.Column<int>(nullable: false),
-                    TournamentID = table.Column<int>(nullable: false)
+                    ClubId = table.Column<int>(nullable: false),
+                    ToernooiId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TournamentsForEachClubs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TournamentsForEachClubs_Club_ClubID",
-                        column: x => x.ClubID,
+                        name: "FK_TournamentsForEachClubs_Club_ClubId",
+                        column: x => x.ClubId,
                         principalTable: "Club",
-                        principalColumn: "ClubID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TournamentsForEachClubs_Toernooi_TournamentID",
-                        column: x => x.TournamentID,
+                        name: "FK_TournamentsForEachClubs_Toernooi_ToernooiId",
+                        column: x => x.ToernooiId,
                         principalTable: "Toernooi",
-                        principalColumn: "TournamentID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Toernooi_ClubID",
-                table: "Toernooi",
-                column: "ClubID");
+                name: "IX_TournamentsForEachClubs_ClubId",
+                table: "TournamentsForEachClubs",
+                column: "ClubId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TournamentsForEachClubs_ClubID",
+                name: "IX_TournamentsForEachClubs_ToernooiId",
                 table: "TournamentsForEachClubs",
-                column: "ClubID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TournamentsForEachClubs_TournamentID",
-                table: "TournamentsForEachClubs",
-                column: "TournamentID");
+                column: "ToernooiId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -91,10 +79,10 @@ namespace Schaaktoernooi.Migrations
                 name: "TournamentsForEachClubs");
 
             migrationBuilder.DropTable(
-                name: "Toernooi");
+                name: "Club");
 
             migrationBuilder.DropTable(
-                name: "Club");
+                name: "Toernooi");
         }
     }
 }

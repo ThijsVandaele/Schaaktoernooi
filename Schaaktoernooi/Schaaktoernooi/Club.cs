@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Schaaktoernooi
@@ -8,9 +6,9 @@ namespace Schaaktoernooi
     public class Club
     {
         [Key]
-        public int ClubID { get; set; }
+        public int Id { get; set; }
 
-        public IList<TournamentsForEachClub> tournamentsForEachClubs { get; set; }
-        = new List<TournamentsForEachClub>();
+        public IList<TournamentsForEachClub> TournamentsForEachClubs { get; set; }
+            = new List<TournamentsForEachClub>();
     }
 }
