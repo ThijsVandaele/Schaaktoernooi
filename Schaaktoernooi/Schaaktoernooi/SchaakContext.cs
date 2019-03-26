@@ -14,6 +14,7 @@ namespace Schaaktoernooi
        public DbSet<Toernooi> Toernooi { get; set; }
        public DbSet<Club> Club { get; set; }
        public DbSet<TournamentsForEachClub> TournamentsForEachClubs { get; set; }
+       public DbSet<List_of_Sponsors> List_Of_Sponsors { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsbuilder)
         {

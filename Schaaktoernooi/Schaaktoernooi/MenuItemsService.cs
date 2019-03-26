@@ -29,6 +29,19 @@ namespace Schaaktoernooi
 
                 }
         }
+
+        public void ToonAlleSponsors()
+        {
+            using (var context = new SchaakContext())
+            {
+                var sponsors = context.List_Of_Sponsors;
+
+                foreach (var sponsor in sponsors)
+                {
+                    Console.WriteLine($" { sponsor.SponsorName,25 } { sponsor.SponsorPhone, 15}");
+                }
+            }
+        }
     }
 }
 
