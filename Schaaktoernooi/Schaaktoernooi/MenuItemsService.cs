@@ -42,6 +42,15 @@ namespace Schaaktoernooi
                 }
             }
         }
+
+       /* public void RegistrerenVanSponsor(string sponsorNaam)
+        {
+            using (var context = new SchaakContext())
+            {
+                var sponsors = context.List_Of_Sponsors.FirstOrDefault(x => x.SponsorName == sponsorNaam);
+
+            }
+        }*/
     }
 }
 

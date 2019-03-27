@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Schaaktoernooi;
 
 namespace Schaaktoernooi.Migrations
 {
     [DbContext(typeof(SchaakContext))]
-    partial class SchaakContextModelSnapshot : ModelSnapshot
+    [Migration("20190327173145_add List_of_Sponsor")]
+    partial class addList_of_Sponsor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
